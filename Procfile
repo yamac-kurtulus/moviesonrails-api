@@ -1,1 +1,1 @@
-web: ./deploy.sh
+release: rake db:migrate
