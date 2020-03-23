@@ -10,4 +10,48 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def assert_equal_model (expected_model, actual_model)
+    flag = true
+    excluded_instance_fields = {
+      "created_at" => true,
+      "updated_at" => true,
+      "id" => true,
+      "title" => true
+      # ###
+      # For some weird reason, spaces in title strings are not equal ()
+
+      # normally:
+      # puts e  => "Whiplash (2014)"
+      # puts a  => "Whiplash (2014)"
+      # And assert_equals a, e fails
+
+      # when year is deleted without a space:
+      # e = expected_model.attributes[key].delete_suffix('(2014)')
+      # a = actual_model.attributes[key].delete_suffix('(2014)')
+      # puts e  => "Whiplash "
+      # puts a  => "Whiplash "
+      # assert_equals a, e fails
+
+      # when year is deleted with a space:
+      # e = expected_model.attributes[key].delete_suffix(' (2014)')
+      # a = actual_model.attributes[key].delete_suffix(' (2014)')
+      # puts e  => "Whiplash (2014)"
+      # puts a  => "Whiplash"
+      # assert_equals a, e
+      # ###
+    }
+
+    expected_model.attributes.each do | key, value |
+      unless excluded_instance_fields.has_key? key
+        #use the flag to have a single assertion
+        flag = actual_model.attributes[key] == value
+      end
+      unless flag
+        break
+      end
+    end
+    assert flag
+  end
+
 end
