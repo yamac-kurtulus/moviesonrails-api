@@ -47,7 +47,7 @@ class ImdbScraper
     end
 
     def scrape_star (imdb_id)
-        star_page = load_page (star_id)
+        star_page = load_page (imdb_id)
         star = Star.new
         star.title = movie_page.css(".title_wrapper > h1:nth-child(1)").text.strip
         star.imdb_id = @current_url.delete_prefix('/title/').delete_suffix('/')

@@ -48,3 +48,8 @@ gem 'nokogiri'
 
 # Test and seed data generator
 gem 'faker'
+
+gem 'graphql', '1.10'
+
+#Authorization gem
+gem 'clearance'
