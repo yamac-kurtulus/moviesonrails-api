@@ -5,14 +5,13 @@ class StarsControllerTest < ActionDispatch::IntegrationTest
     @star = stars(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get stars_url, as: :json
     assert_response :success
   end
 
-  test "should show star" do
+  test 'should show star' do
     get star_url(@star), as: :json
     assert_response :success
   end
-
 end

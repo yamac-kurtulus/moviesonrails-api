@@ -7,31 +7,30 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 genres = Genre.create(
-    [
-        { name: 'Action' },
- 	    { name: 'Adventure' },
-		{ name: 'Animation' },
-		{ name: 'Biography' },
-		{ name: 'Comedy' },
-		{ name: 'Crime' },
-		{ name: 'Documentary' },
-		{ name: 'Drama' },
-		{ name: 'Family' },
-		{ name: 'Fantasy' },
-		{ name: 'Film Noir' },
-		{ name: 'History' },
-		{ name: 'Horror' },
-		{ name: 'Music' },
-		{ name: 'Musical' },
-		{ name: 'Mystery' },
-		{ name: 'Romance' },
-		{ name: 'Sci-Fi' },
-		{ name: 'Short Film' },
-		{ name: 'Sport' },
-		{ name: 'Superhero' },
-		{ name: 'Thriller' },
-		{ name: 'War' },
-		{ name: 'Western' }
-    ]
+  [
+    { name: 'Action' },
+    { name: 'Adventure' },
+    { name: 'Animation' },
+    { name: 'Biography' },
+    { name: 'Comedy' },
+    { name: 'Crime' },
+    { name: 'Documentary' },
+    { name: 'Drama' },
+    { name: 'Family' },
+    { name: 'Fantasy' },
+    { name: 'Film Noir' },
+    { name: 'History' },
+    { name: 'Horror' },
+    { name: 'Music' },
+    { name: 'Musical' },
+    { name: 'Mystery' },
+    { name: 'Romance' },
+    { name: 'Sci-Fi' },
+    { name: 'Short Film' },
+    { name: 'Sport' },
+    { name: 'Superhero' },
+    { name: 'Thriller' },
+    { name: 'War' },
+    { name: 'Western' }
+  ]
 )
-	

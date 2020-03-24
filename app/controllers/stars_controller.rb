@@ -1,5 +1,5 @@
 class StarsController < ApplicationController
-  before_action :set_star, only: [:show, :update, :destroy]
+  before_action :set_star, only: %i[show update destroy]
 
   # GET /stars
   def index
@@ -39,13 +39,14 @@ class StarsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_star
-      @star = Star.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def star_params
-      params.require(:star).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_star
+    @star = Star.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def star_params
+    params.require(:star).permit(:name)
+  end
 end

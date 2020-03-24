@@ -11,13 +11,13 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 
-  def assert_equal_model (expected_model, actual_model)
+  def assert_equal_model(expected_model, actual_model)
     flag = true
     excluded_instance_fields = {
-      "created_at" => true,
-      "updated_at" => true,
-      "id" => true,
-      "title" => true
+      'created_at' => true,
+      'updated_at' => true,
+      'id' => true,
+      'title' => true
       # ###
       # For some weird reason, spaces in title strings are not equal ()
 
@@ -42,16 +42,13 @@ class ActiveSupport::TestCase
       # ###
     }
 
-    expected_model.attributes.each do | key, value |
+    expected_model.attributes.each do |key, value|
       unless excluded_instance_fields.has_key? key
-        #use the flag to have a single assertion
+        # use the flag to have a single assertion
         flag = actual_model.attributes[key] == value
       end
-      unless flag
-        break
-      end
+      break unless flag
     end
     assert flag
   end
-
 end

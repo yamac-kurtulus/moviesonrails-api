@@ -5,12 +5,12 @@ class GenresControllerTest < ActionDispatch::IntegrationTest
     @genre = genres(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get genres_url, as: :json
     assert_response :success
   end
 
-  test "should show genre" do
+  test 'should show genre' do
     get genre_url(@genre), as: :json
     assert_response :success
   end

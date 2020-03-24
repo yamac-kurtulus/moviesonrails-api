@@ -5,12 +5,12 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     @movie = movies(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get movies_url, as: :json
     assert_response :success
   end
 
-  test "should show movie" do
+  test 'should show movie' do
     get movie_url(@movie), as: :json
     assert_response :success
   end
