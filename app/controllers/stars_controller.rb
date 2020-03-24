@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StarsController < ApplicationController
   before_action :set_star, only: %i[show update destroy]
 

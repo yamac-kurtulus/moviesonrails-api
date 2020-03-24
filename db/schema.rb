@@ -10,42 +10,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_324_023_644) do
+ActiveRecord::Schema.define(version: 2020_03_24_052939) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'genres', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'movies', force: :cascade do |t|
-    t.string 'title'
-    t.string 'imdb_id'
-    t.decimal 'imdb_rating'
-    t.text 'poster_url'
-    t.text 'plot'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "genres_movies", id: false, force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "genre_id", null: false
   end
 
-  create_table 'stars', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "genres_users", id: false, force: :cascade do |t|
+    t.bigint "genre_id", null: false
+    t.bigint "user_id", null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email'
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'encrypted_password', limit: 128
-    t.string 'confirmation_token', limit: 128
-    t.string 'remember_token', limit: 128
-    t.string 'api_token'
-    t.index ['email'], name: 'index_users_on_email'
-    t.index ['remember_token'], name: 'index_users_on_remember_token'
+  create_table "jwt_blacklist", id: :serial, force: :cascade do |t|
+    t.string "jti", null: false
+    t.index ["jti"], name: "index_jwt_blacklist_on_jti"
   end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.string "imdb_id"
+    t.decimal "imdb_rating"
+    t.text "poster_url"
+    t.text "plot"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "movies_stars", id: false, force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "star_id", null: false
+    t.index ["movie_id", "star_id"], name: "index_movies_stars_on_movie_id_and_star_id"
+    t.index ["star_id", "movie_id"], name: "index_movies_stars_on_star_id_and_movie_id"
+  end
+
+  create_table "movies_users", id: false, force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "user_id", null: false
+  end
+
+  create_table "stars", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "imdb_id"
+  end
+
+  create_table "stars_users", id: false, force: :cascade do |t|
+    t.bigint "star_id", null: false
+    t.bigint "user_id", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
 end

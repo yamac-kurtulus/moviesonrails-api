@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CrateJoinTableMoviesStars < ActiveRecord::Migration[6.0]
   def change
     create_join_table :movies, :stars do |t|
