@@ -40,8 +40,7 @@ class ActiveSupport::TestCase
     excluded_instance_fields = {
       'created_at' => true,
       'updated_at' => true,
-      'id' => true,
-      'title' => true
+      'id' => true
     }
 
     expected_model.attributes.each do |key, value|

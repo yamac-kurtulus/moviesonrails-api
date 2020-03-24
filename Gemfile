@@ -46,10 +46,11 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-# Needed for scraping data from IMDB when seeding DB
+# Needed for scraping data from IMDB
 gem 'nokogiri'
 
-# Test and seed data generator
+# Test and seed data generators and factories
+gem 'factory_bot'
 gem 'faker'
 
 gem 'graphql', '1.10'

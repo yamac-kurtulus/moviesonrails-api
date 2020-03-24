@@ -5,7 +5,7 @@ require 'minitest/autorun'
 require 'imdb_scraper'
 require 'movie'
 
-class ScrapeTest < ActiveSupport::TestCase
+class ScraperTest < ActiveSupport::TestCase
   setup do
     url = 'https://www.imdb.com/chart/top'
     @sut = ImdbScraper.new(url)
@@ -14,20 +14,20 @@ class ScrapeTest < ActiveSupport::TestCase
   end
 
   test 'should load imdb top 250 films page' do
-    title = @sut.get_page_title
+    title = @sut.page_title
     assert title == 'IMDb Top 250 - IMDb'
   end
 
   test 'should load movie page' do
-    doc = @sut.load_page 'tt2582802'
-    title = @sut.get_page_title
-    assert title = 'Whiplash (2014) - IMDb'
+    @sut.load_page 'tt2582802'
+    title = @sut.page_title
+    assert_equal title, 'Whiplash (2014) - IMDb'
   end
 
   test 'should load star page' do
-    doc = @sut.load_page 'nm1886602'
-    title = @sut.get_page_title
-    assert title = 'Miles Teller - IMDb'
+    @sut.load_page 'nm1886602'
+    title = @sut.page_title
+    assert_equal title, 'Miles Teller - IMDb'
   end
 
   test 'invalid id should not be loaded' do
@@ -36,13 +36,13 @@ class ScrapeTest < ActiveSupport::TestCase
     end
   end
 
-  test "should return 'Whiplash'" do
+  test "should be same as 'Whiplash'" do
     movie = @sut.scrape_movie('tt2582802')
-    assert_equal_model movie, @sample_movie
+    assert_equal_model @sample_movie, movie
   end
 
-  test "should return 'Miles'" do
+  test "should be same as 'Miles'" do
     star = @sut.scrape_star('nm1886602')
-    assert_equal_model movie, @sample_movie
+    assert_equal_model star, @sample_star
   end
 end

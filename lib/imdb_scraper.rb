@@ -12,7 +12,7 @@ class ImdbScraper
     @doc = Nokogiri::HTML(open(url))
   end
 
-  def get_page_title
+  def page_title
     @doc.title
   end
 
@@ -31,14 +31,14 @@ class ImdbScraper
     else
       raise 'not a valid IMDB id'
     end
-    page = Nokogiri::HTML(open(page_url))
+    @doc = page = Nokogiri::HTML(URI.open(page_url))
     page
   end
 
   def scrape_movie(imdb_id)
     movie_page = load_page imdb_id
     movie = Movie.new
-    movie.title = movie_page.css('.title_wrapper > h1:nth-child(1)').text.strip
+    movie.title = movie_page.title.split('-')[0].strip
     movie.imdb_id = @current_imdb_id
     movie.imdb_rating = movie_page.css('.ratingValue > strong:nth-child(1) > span:nth-child(1)').text.strip
     movie.poster_url = movie_page.css('.poster > a:nth-child(1) > img:nth-child(1)').attr('src')
