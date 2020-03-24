@@ -3,9 +3,8 @@
 one:
   email: MyString
   name: MyString
-  password_hash: MyString
+
 
 two:
   email: MyString
   name: MyString
-  password_hash: MyString
