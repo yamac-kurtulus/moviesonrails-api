@@ -39,7 +39,7 @@ class ImdbScraper
         movie_page = load_page (imdb_id)
         movie = Movie.new
         movie.title = movie_page.css(".title_wrapper > h1:nth-child(1)").text.strip
-        movie.imdb_id = @current_imdb_id.delete_prefix('/title/').delete_suffix('/')
+        movie.imdb_id = @current_imdb_id
         movie.imdb_rating = movie_page.css(".ratingValue > strong:nth-child(1) > span:nth-child(1)").text.strip
         movie.poster_url = movie_page.css(".poster > a:nth-child(1) > img:nth-child(1)").attr('src')
         movie.plot = movie_page.css(".summary_text").text.strip
@@ -48,12 +48,10 @@ class ImdbScraper
 
     def scrape_star (imdb_id)
         star_page = load_page (imdb_id)
-        star = Star.new
-        star.title = movie_page.css(".title_wrapper > h1:nth-child(1)").text.strip
-        star.imdb_id = @current_url.delete_prefix('/title/').delete_suffix('/')
-        star.imdb_rating = movie_page.css(".ratingValue > strong:nth-child(1) > span:nth-child(1)").text.strip
-        star.poster_url = movie_page.css(".poster > a:nth-child(1) > img:nth-child(1)").attr('src')
-        star.plot = movie_page.css(".summary_text").text.strip
+        star = Star.new   
+        star.name = star_page.css("#name-overview-widget-layout > tbody > tr:nth-child(1) > td > h1 > span").text.strip
+        star.imdb_id = @current_imdb_id
+        star.poster_url = star_page.css("#name-poster").attr('src')
         return star
     end
 

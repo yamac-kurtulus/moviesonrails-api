@@ -19,8 +19,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-#Use java web token
+#Use java web token with devise
 gem 'jwt' 
+gem 'devise'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -50,6 +51,3 @@ gem 'nokogiri'
 gem 'faker'
 
 gem 'graphql', '1.10'
-
-#Authorization gem
-gem 'clearance'
