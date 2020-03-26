@@ -37,6 +37,19 @@ class ImdbScraper
 
   def scrape_movie(imdb_id)
     movie_page = load_page imdb_id
+    movie = read_movie_info movie_page
+    movie
+  end
+
+  def scrape_star(imdb_id)
+    star_page = load_page imdb_id
+    star = read_star_info star_page
+    star
+  end
+
+  private
+
+  def read_movie_info (movie_page)
     movie = Movie.new
     movie.title = movie_page.title.split('-')[0].strip
     movie.imdb_id = @current_imdb_id
@@ -45,9 +58,8 @@ class ImdbScraper
     movie.plot = movie_page.css('.summary_text').text.strip
     movie
   end
-
-  def scrape_star(imdb_id)
-    star_page = load_page imdb_id
+  
+  def read_star_info (star_page)
     star = Star.new
     star.name = star_page.css('#name-overview-widget-layout > tbody > tr:nth-child(1) > td > h1 > span').text.strip
     star.imdb_id = @current_imdb_id

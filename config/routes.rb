@@ -1,17 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, defaults: { format: :json },
-                     controllers: {
-                       registrations: 'registrations'
-                     },
-                     path_names: {
-                       sign_in: 'login',
-                       sign_out: 'logout',
-                       registration: 'signup'
-                     }
-  post '/graphql', to: 'graphql#execute'
-  resources :users
+  get 'auth/login'
+  get 'auth/logout'
+  post 'auth/register'
   resources :stars
   resources :genres
   resources :movies

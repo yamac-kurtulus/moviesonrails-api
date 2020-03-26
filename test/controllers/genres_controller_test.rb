@@ -16,4 +16,6 @@ class GenresControllerTest < ActionDispatch::IntegrationTest
     get genre_url(@genre), as: :json
     assert_response :success
   end
+
+
 end
