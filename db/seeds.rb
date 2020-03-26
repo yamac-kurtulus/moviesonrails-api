@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Genre.create
+Genre.create(
   [
     { name: 'Action' },
     { name: 'Adventure' },
@@ -35,9 +35,10 @@ Genre.create
     { name: 'War' },
     { name: 'Western' }
   ]
+)
 
 
-  Movie.create
+  movies = Movie.create (
   [
     {
       title: 'Forrest Gump (1994)',
@@ -63,7 +64,7 @@ Genre.create
       ]
     },
     {
-      title: 'As Good as It Gets  (1997)',
+      title: 'As Good as It Gets (1997)',
       imdb_id: 'tt0119822',
       imdb_rating: 7.7,
       poster_url: 'https://m.media-amazon.com/images/M/MV5BNWMxZTgzMWEtMTU0Zi00NDc5LWFkZjctMzUxNDIyNzZiMmNjXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX182_CR0,0,182,268_AL_.jpg',
@@ -314,28 +315,28 @@ Genre.create
         Genre.find_by(name: 'Action')
       ]
     }
-
   ]
+)
 
-  Star.create
-  [
-    {
-      name: 'Tom Hanks',
-      imdb_id: 'nm0000158',
-      poster_url: 'https://m.media-amazon.com/images/M/MV5BMTQ2MjMwNDA3Nl5BMl5BanBnXkFtZTcwMTA2NDY3NQ@@._V1_UY317_CR2,0,214,317_AL_.jpg',
-      movies: [
-        Movie.find_by(title: 'Forrest Gump (1994)'),
-        Movie.find_by(title: 'Cast Away (2000)'),
-        Movie.find_by(title: 'Saving Private Ryan (1998)')
-      ]
-    },
+    Star.create (
+    [
+      {
+        name: 'Tom Hanks',
+        imdb_id: 'nm0000158',
+        poster_url: 'https://m.media-amazon.com/images/M/MV5BMTQ2MjMwNDA3Nl5BMl5BanBnXkFtZTcwMTA2NDY3NQ@@._V1_UY317_CR2,0,214,317_AL_.jpg',
+        movies: [
+          Movie.find_by(title: 'Forrest Gump (1994)'),
+          Movie.find_by(title: 'Cast Away (2000)'),
+          Movie.find_by(title: 'Saving Private Ryan (1998)')
+        ]
+      },
     {
       name: 'Helen Hunt',
       imdb_id: 'nm0000166',
       poster_url: 'https://m.media-amazon.com/images/M/MV5BMTM1OTk1ODIwMV5BMl5BanBnXkFtZTcwMTA0MTIwOQ@@._V1_UY317_CR14,0,214,317_AL_.jpg',
       movies: [
         Movie.find_by(title: 'Cast Away (2000)'),
-        Movie.find_by(title: 'As Good as It Gets  (1997)'),
+        Movie.find_by(title: 'As Good as It Gets (1997)'),
         Movie.find_by(title: 'Twister (1996)')
       ]
     },
@@ -344,9 +345,8 @@ Genre.create
       imdb_id: 'nm0000197',
       poster_url: 'https://m.media-amazon.com/images/M/MV5BMTQ3OTY0ODk0M15BMl5BanBnXkFtZTYwNzE4Njc4._V1_UY317_CR7,0,214,317_AL_.jpg',
       movies: [
-        Movie.find_by(title: 'As Good as It Gets  (1997)'),
-        Movie.find_by(title: 'The Departed (2006)'),
-        Movie.find_by(title: 'Chinatown (1974)')
+        Movie.find_by(title: 'As Good as It Gets (1997)'),
+        Movie.find_by(title: 'The Departed (2006)')
       ]
     },
     {
@@ -355,7 +355,6 @@ Genre.create
       poster_url: 'https://m.media-amazon.com/images/M/MV5BMjI0MTg3MzI0M15BMl5BanBnXkFtZTcwMzQyODU2Mw@@._V1_UY317_CR10,0,214,317_AL_.jpg',
       movies: [
         Movie.find_by(title: 'The Departed (2006)'),
-        Movie.find_by(title: 'Titanic (1997)'),
         Movie.find_by(title: 'The Wolf of Wall Street (2013)'),
         Movie.find_by(title: 'Inception (2010)')
       ]
@@ -387,10 +386,8 @@ Genre.create
       imdb_id: 'nm0001379',
       poster_url: 'https://m.media-amazon.com/images/M/MV5BMjI0OTcyMDcxMF5BMl5BanBnXkFtZTcwNDY0MjE3Mw@@._V1_UY317_CR12,0,214,317_AL_.jpg',
       movies: [
-        Movie.find_by(title: 'Chinatown (1974)'),
         Movie.find_by(title: 'The Treasure of the Sierra Madre (1948)')
       ]
-     
     },
     {
       name: 'Bryan Cranston',
@@ -486,29 +483,32 @@ Genre.create
       ]
     }
   ]
+)
 
-  Movie.find_by(imdb_id: 'tt0109830').stars << [ Star.find_by(imdb_id: 'nm0000158')]
-  Movie.find_by(imdb_id: 'tt0162222').stars << [ Star.find_by(imdb_id: 'nm0000158'), Star.find_by(imdb_id: 'nm0000166')]
-  Movie.find_by(imdb_id: 'tt0119822').stars << [ Star.find_by(imdb_id: 'nm0000166'), Star.find_by(imdb_id: 'nm0000197')]
-  Movie.find_by(imdb_id: 'tt0407887').stars << [ Star.find_by(imdb_id: 'nm0000197'), Star.find_by(imdb_id: 'nm0000138'), Star.find_by(imdb_id: 'nm0000354')]
-  Movie.find_by(imdb_id: 'tt0119217').stars << [ Star.find_by(imdb_id: 'nm0000354'), Star.find_by(imdb_id: 'nm0000255')]
-  Movie.find_by(imdb_id: 'tt2267998').stars << [ Star.find_by(imdb_id: 'nm0000255')]
-  Movie.find_by(imdb_id: 'tt0840361').stars << [ Star.find_by(imdb_id: 'nm0000255')]
-  Movie.find_by(imdb_id: 'tt0120815').stars << [ Star.find_by(imdb_id: 'nm0000158'), Star.find_by(imdb_id: 'nm0000354')]
-  Movie.find_by(imdb_id: 'tt0993846').stars << [ Star.find_by(imdb_id: 'nm0000138')]
-  Movie.find_by(imdb_id: 'tt0117998').stars << [ Star.find_by(imdb_id: 'nm0000166')]
-  Movie.find_by(imdb_id: 'tt0071315').stars << [ Star.find_by(imdb_id: 'nm0001379'), Star.find_by(imdb_id: 'nm0000197')]
-  Movie.find_by(imdb_id: 'tt0040897').stars << [ Star.find_by(imdb_id: 'nm0001379')]
-  Movie.find_by(imdb_id: 'tt3659388').stars << [ Star.find_by(imdb_id: 'nm0000354')]
-  Movie.find_by(imdb_id: 'tt0134119').stars << [ Star.find_by(imdb_id: 'nm0000354'), Star.find_by(imdb_id: 'nm0000179'), Star.find_by(imdb_id: 'nm0005212')]
-  Movie.find_by(imdb_id: 'tt1375666').stars << [ Star.find_by(imdb_id: 'nm0000138')]
-  Movie.find_by(imdb_id: 'tt1024648').stars << [ Star.find_by(imdb_id: 'nm0186505')]
-  Movie.find_by(imdb_id: 'tt3203606').stars << [ Star.find_by(imdb_id: 'nm0186505')]
-  Movie.find_by(imdb_id: 'tt6018306').stars << [ Star.find_by(imdb_id: 'nm0186505'), Star.find_by(imdb_id: 'nm0000401')]
-  Movie.find_by(imdb_id: 'tt0133093').stars << [ Star.find_by(imdb_id: 'nm0000401')]
-  Movie.find_by(imdb_id: 'tt0234215').stars << [ Star.find_by(imdb_id: 'nm0000401')]
-  Movie.find_by(imdb_id: 'tt0137523').stars << [ Star.find_by(imdb_id: 'nm0000093')]
-  Movie.find_by(imdb_id: 'tt1598778').stars << [ Star.find_by(imdb_id: 'nm0000179')]
-  Movie.find_by(imdb_id: 'tt0120737').stars << [ Star.find_by(imdb_id: 'nm0000704'), Star.find_by(imdb_id: 'nm0089217')]
-  Movie.find_by(imdb_id: 'tt5033998').stars << [ Star.find_by(imdb_id: 'nm0829576'), Star.find_by(imdb_id: 'nm4305463')]
-  Movie.find_by(imdb_id: 'tt0118715').stars << [ Star.find_by(imdb_id: 'nm0000313'), Star.find_by(imdb_id: 'nm0000194')]
+
+
+  Movie.find_by(imdb_id: 'tt0109830').stars << Star.find_by(imdb_id: 'nm0000158') << Star.find_by(imdb_id: 'nm0000158')
+  Movie.find_by(imdb_id: 'tt0162222').stars << Star.find_by(imdb_id: 'nm0000166')
+  Movie.find_by(imdb_id: 'tt0119822').stars << Star.find_by(imdb_id: 'nm0000166') << Star.find_by(imdb_id: 'nm0000197')
+  Movie.find_by(imdb_id: 'tt0407887').stars << Star.find_by(imdb_id: 'nm0000197') << Star.find_by(imdb_id: 'nm0000138') << Star.find_by(imdb_id: 'nm0000354')
+  Movie.find_by(imdb_id: 'tt0119217').stars << Star.find_by(imdb_id: 'nm0000354') << Star.find_by(imdb_id: 'nm0000255')
+  Movie.find_by(imdb_id: 'tt2267998').stars << Star.find_by(imdb_id: 'nm0000255')
+  Movie.find_by(imdb_id: 'tt0840361').stars << Star.find_by(imdb_id: 'nm0000255')
+  Movie.find_by(imdb_id: 'tt0120815').stars << Star.find_by(imdb_id: 'nm0000158') << Star.find_by(imdb_id: 'nm0000354')
+  Movie.find_by(imdb_id: 'tt0993846').stars << Star.find_by(imdb_id: 'nm0000138')
+  Movie.find_by(imdb_id: 'tt0117998').stars << Star.find_by(imdb_id: 'nm0000166')
+  Movie.find_by(imdb_id: 'tt0071315').stars << Star.find_by(imdb_id: 'nm0001379') << Star.find_by(imdb_id: 'nm0000197')
+  Movie.find_by(imdb_id: 'tt0040897').stars << Star.find_by(imdb_id: 'nm0001379')
+  Movie.find_by(imdb_id: 'tt3659388').stars << Star.find_by(imdb_id: 'nm0000354')
+  Movie.find_by(imdb_id: 'tt0134119').stars << Star.find_by(imdb_id: 'nm0000354') << Star.find_by(imdb_id: 'nm0000179') << Star.find_by(imdb_id: 'nm0005212')
+  Movie.find_by(imdb_id: 'tt1375666').stars << Star.find_by(imdb_id: 'nm0000138')
+  Movie.find_by(imdb_id: 'tt1024648').stars << Star.find_by(imdb_id: 'nm0186505')
+  Movie.find_by(imdb_id: 'tt3203606').stars << Star.find_by(imdb_id: 'nm0186505')
+  Movie.find_by(imdb_id: 'tt6018306').stars << Star.find_by(imdb_id: 'nm0186505') << Star.find_by(imdb_id: 'nm0000401')
+  Movie.find_by(imdb_id: 'tt0133093').stars << Star.find_by(imdb_id: 'nm0000401')
+  Movie.find_by(imdb_id: 'tt0234215').stars << Star.find_by(imdb_id: 'nm0000401')
+  Movie.find_by(imdb_id: 'tt0137523').stars << Star.find_by(imdb_id: 'nm0000093')
+  Movie.find_by(imdb_id: 'tt1598778').stars << Star.find_by(imdb_id: 'nm0000179')
+  Movie.find_by(imdb_id: 'tt0120737').stars << Star.find_by(imdb_id: 'nm0000704') << Star.find_by(imdb_id: 'nm0089217')
+  Movie.find_by(imdb_id: 'tt5033998').stars << Star.find_by(imdb_id: 'nm0829576') << Star.find_by(imdb_id: 'nm4305463')
+  Movie.find_by(imdb_id: 'tt0118715').stars << Star.find_by(imdb_id: 'nm0000313') << Star.find_by(imdb_id: 'nm0000194')
