@@ -1,0 +1,38 @@
+require 'test_helper'
+
+class AalisControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @aali = aalis(:one)
+  end
+
+  test "should get index" do
+    get aalis_url, as: :json
+    assert_response :success
+  end
+
+  test "should create aali" do
+    assert_difference('Aali.count') do
+      post aalis_url, params: { aali: { cnt: @aali.cnt, name: @aali.name } }, as: :json
+    end
+
+    assert_response 201
+  end
+
+  test "should show aali" do
+    get aali_url(@aali), as: :json
+    assert_response :success
+  end
+
+  test "should update aali" do
+    patch aali_url(@aali), params: { aali: { cnt: @aali.cnt, name: @aali.name } }, as: :json
+    assert_response 200
+  end
+
+  test "should destroy aali" do
+    assert_difference('Aali.count', -1) do
+      delete aali_url(@aali), as: :json
+    end
+
+    assert_response 204
+  end
+end

@@ -2,14 +2,14 @@
 
 one:
   title: MyString
-  imdb_id: MyString
+  imdb_id: tt12345678
   imdb_rating: 9.99
   poster_url: MyText
   plot: MyText
 
 two:
   title: MyString
-  imdb_id: MyString
+  imdb_id: tt12345678
   imdb_rating: 9.99
   poster_url: MyText
   plot: MyText

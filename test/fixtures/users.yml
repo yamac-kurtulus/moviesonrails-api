@@ -1,21 +1,31 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
-  password_digest: MyString
+valid:
+  name: valid
+  email: alice@wonderland.com
+  password_digest: <%= BCrypt::Password.create('alicePassword', cost: 5) %>
 
-two:
+invalid:
   name: MyString
   email: MyString
   password_digest: MyString
 
 alice:
   name: alice
-  email: alice@alice.com
+  email: alice@wonderland.com
   password_digest: <%= BCrypt::Password.create('alicePassword', cost: 5) %>
 
-bob:
+alice_imposter:
   name: alice
-  email: alice@alice.com
+  email: alice@wonderland.com
+  password_digest: <%= BCrypt::Password.create('alicePassword', cost: 5) %>
+
+truth:
+  name: truth
+  email: truth@outthere.com
+  password_digest: <%= BCrypt::Password.create('truthPassword', cost: 5) %>
+
+bad_email:
+  name: bad
+  email: xx
   password_digest: <%= BCrypt::Password.create('bobPassword', cost: 5) %>
