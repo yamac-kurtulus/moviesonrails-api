@@ -4,17 +4,22 @@ FactoryBot.define do
     imdb_id { generate :movie_imdb_id }
     imdb_rating { 9.99 }
     poster_url { "movie_url" }
-    plot { "movie_plot" }
+    plot { "bla bla" }
 
-    transient do
-      genres_count { 3 }
-    end
-    transient do
-      stars_count { 3 }
+    factory :movie_with_genres_stars do
+      transient do
+        genres_count{ 3 }
+      end
     end
 
     after(:create) do |movie, evaluator|
-      create_list(:genre, evaluator.genres_count, profiles: [movie])
+      puts 'aaaaa' + movie.to_json
+      puts 'bbbbb' + movie.genres.to_json
+      movie.genres << Genre.all[0]
+
+      create_list(:genre, evaluator.genres_count, movies: [movie])
+      puts 'ccccc' + movie.genres.to_json
+      create_list(:star, evaluator.genres_count, movies: [movie])
     end
   end
 
