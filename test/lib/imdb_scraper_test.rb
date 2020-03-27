@@ -5,7 +5,7 @@ require 'minitest/autorun'
 require 'imdb_scraper'
 require 'movie'
 
-class ScraperTest < ActiveSupport::TestCase
+class ImdbScraperTest < ActiveSupport::TestCase
   setup do
     url = 'https://www.imdb.com/chart/top'
     @sut = ImdbScraper.new(url)

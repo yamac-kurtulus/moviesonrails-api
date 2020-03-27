@@ -14,14 +14,8 @@ Rails.application.routes.draw do
   get 'genres', to: 'genres#index', as: 'genres'
   get 'genres/:id', to: 'genres#show', as: 'genre'
 
-  get 'stars/', to: 'stars#index', as: 'stars' 
-  get 'stars/:id', to: 'stars#show', as: 'star' 
-
-
-
-  resources :teams, only: [:show, :index] do
-    put 'add_player', on: :member
-  end
+  get 'stars/', to: 'stars#index', as: 'stars'
+  get 'stars/:id', to: 'stars#show', as: 'star'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

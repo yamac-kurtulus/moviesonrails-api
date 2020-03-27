@@ -1,9 +1,6 @@
-
 class AuthController < ApplicationController
-
   # POST auth/login
   def login
-
     user = User.find_by(email: login_params[:email].downcase)
     if user && user.authenticate(login_params[:password])
 

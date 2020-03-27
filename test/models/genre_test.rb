@@ -3,7 +3,6 @@
 require 'test_helper'
 
 class GenreTest < ActiveSupport::TestCase
-
   def setup
     @empty = Genre.new
     @genre = build (:genre)

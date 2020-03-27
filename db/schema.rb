@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_123932) do
+ActiveRecord::Schema.define(version: 2020_03_27_151241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "follows", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.integer "follow_type"
+    t.integer "followable_id"
+    t.string "followable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
@@ -32,11 +33,6 @@ ActiveRecord::Schema.define(version: 2020_03_27_123932) do
   create_table "genres_movies", id: false, force: :cascade do |t|
     t.bigint "movie_id", null: false
     t.bigint "genre_id", null: false
-  end
-
-  create_table "genres_users", id: false, force: :cascade do |t|
-    t.bigint "genre_id", null: false
-    t.bigint "user_id", null: false
   end
 
   create_table "movies", force: :cascade do |t|
@@ -56,22 +52,12 @@ ActiveRecord::Schema.define(version: 2020_03_27_123932) do
     t.index ["star_id", "movie_id"], name: "index_movies_stars_on_star_id_and_movie_id"
   end
 
-  create_table "movies_users", id: false, force: :cascade do |t|
-    t.bigint "movie_id", null: false
-    t.bigint "user_id", null: false
-  end
-
   create_table "stars", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "imdb_id"
     t.string "poster_url"
-  end
-
-  create_table "stars_users", id: false, force: :cascade do |t|
-    t.bigint "star_id", null: false
-    t.bigint "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
